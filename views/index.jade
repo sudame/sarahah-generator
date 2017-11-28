@@ -1,18 +1,27 @@
 extends layout
 
 block content
-  if login
-    h1= title
-    p Welcome to #{title}
-    a(href="/auth/twitter/") 認証
+  if !login
+    .header
+      a#login(href="/auth/twitter/") ログイン
 
-    h2 ツイート
-    form(action="/tweet", method="post")
-      textarea#tweet_text(name="tweet_text", cols="100", rows="10")
+  #intro
+    h1 Sarahah<wbr>ジェネレーター
+    p Sarahahの画像を生成します。
+
+  form#form_s(action="" method="get")
+      textarea#ta_s(name="text", placeholder="Sarahahのテキストを入力")
       br
-      input(type="submit", value="ツイートする")
-    
-  else
-    h1= title
-    p Welcome to #{title}
-    a(href="/auth/twitter/") 認証
+      input(type="submit" value="作成")
+  canvas#canvas(width="1200px" height="564px" style="display: none;")
+  img#img_s(src="/images/1x1.png" alt="結果")
+  br
+
+  if login
+    form#form_t(action="/tweet", method="post")
+      input#base64_t(type="text", name="image" style="display:none")
+      textarea#ta_t(type="text", name="tweet_text") #Sarahah
+      br
+      p#counter_t 8文字
+      input(type="submit", value="ツイート")
+    script(src="/javascripts/index.js")

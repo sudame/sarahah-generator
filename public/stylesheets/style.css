@@ -1,8 +1,81 @@
+html, body{
+  white-space:nowrap;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 25px;
+  text-align: center;
+}
+
+body> *{
+  margin: 20px auto;
 }
 
 a {
   color: #00B7FF;
+}
+
+#intro{
+  margin-bottom: 20px;
+}
+
+#intro > *{
+  margin: 5px;
+}
+
+img#img_s{
+  width: 98%;
+  max-width: 1000px;
+}
+
+textarea{
+  width: 98%;
+  max-width: 1000px;
+  height: 100px;
+}
+
+a#login{
+  display: block;
+  width: fit-content;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #00B7FF;
+  padding: 5px 15px;
+  text-decoration: none;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+input[type=submit]{
+  border: 1px solid black;
+  background-color: white;
+  margin: 15px auto 5px auto;
+  width: fit-content;
+  padding: 5px 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input[type=submit]:hover{
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+p#counter_t{
+  margin: 5px auto;
+}
+
+@media(max-width: 600px){
+  body{
+    padding: 25px 10px;
+  }
+
+  body> *{
+    margin: 5px auto;
+  }
+
+  input[type=submit]{
+    margin: 5px auto;
+  }
 }
