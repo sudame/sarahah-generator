@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const uuid = require('uuid');
+const MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 const tweet = require('./routes/tweet')
@@ -29,7 +30,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'sudamedame' }));
+app.use(session({
+  secret: "hogehoge",
+  store: new MongoStore({
+    db: 'session',
+    host: 'localhost'
+  }),
+  cookie: {
+    httpOnly: false
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
