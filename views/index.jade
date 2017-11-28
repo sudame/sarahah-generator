@@ -1,5 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  if login
+    h1= title
+    p Welcome to #{title}
+    a(href="/auth/twitter/") 認証
+
+    h2 ツイート
+    form(action="/tweet", method="post")
+      textarea#tweet_text(name="tweet_text", cols="100", rows="10")
+      br
+      input(type="submit", value="ツイートする")
+    
+  else
+    h1= title
+    p Welcome to #{title}
+    a(href="/auth/twitter/") 認証
