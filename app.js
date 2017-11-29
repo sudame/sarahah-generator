@@ -44,7 +44,8 @@ app.use(session({
   store : new MongoStore({
       db : 'heroku_n1hffz96',
       host : 'localhost',
-      url: 'mongodb://heroku_n1hffz96:zyougi923?@ds019936.mlab.com:19936/heroku_n1hffz96'
+      port: 19936,
+      url: 'mongodb://ds019936.mlab.com:19936/heroku_n1hffz96'
    }),
    cookie : {
        path : '/',
