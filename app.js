@@ -31,27 +31,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['sudamedame'],
-//   maxAge: 24 * 60 * 60 * 1000
-// }));
 
 app.use(session({
-  secret : 'sudamedame',
-  resave : true,
-  saveUninitialized : true,
-  store : new MongoStore({
-      db : 'heroku_n1hffz96',
-      host : 'localhost',
-      port: 19936,
-      url: 'mongodb://ds019936.mlab.com:19936/heroku_n1hffz96'
-   }),
-   cookie : {
-       path : '/',
-       secure : false,
-       httpOnly : true
-   }
+  secret: 'sudamedame'
 }));
 
 app.use(passport.initialize());
