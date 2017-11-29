@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const uuid = require('uuid');
@@ -30,9 +31,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: "hogehoge"
-}));
+app.use(cookieSession({ secret: 'tobo!', cookie: { maxAge: 60 * 60 * 1000 }}));
+// app.use(session({
+//   secret: "hogehoge"
+// }));
 app.use(passport.initialize());
 app.use(passport.session({
   secret: 'sudamedame',
