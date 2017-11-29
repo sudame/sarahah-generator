@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const env = process.env;
 
-app.configure('production', function() {
+if (process.env.NODE_ENV = 'production') {
   var RedisStore = require('connect-redis')(express);
   var redisUri = url.parse(env.REDISTOGO_URL);
   var store = new RedisStore({
@@ -54,7 +54,7 @@ app.configure('production', function() {
   });
   app.use(express.session({ secret: env.SESSION_SECRET, store: store }));
   app.use(express.errorHandler());
-});
+}
 
 app.use(passport.initialize());
 app.use(passport.session({
