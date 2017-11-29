@@ -31,14 +31,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieSession({
-  name: 'session',
-  keys: ['sudamedame'],
-  maxAge: 24 * 60 * 60 * 1000
-}));
-// app.use(session({
-//   secret: "hogehoge"
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['sudamedame'],
+//   maxAge: 24 * 60 * 60 * 1000
 // }));
+
+app.use(session({
+  secret : 'sudamedame',
+  resave : true,
+  saveUninitialized : true,
+  store : new MongoStore({
+      db : 'heroku_n1hffz96',
+      host : 'ds019936.mlab.com',
+      port : 19936
+   }),
+   cookie : {
+       path : '/',
+       secure : false,
+       httpOnly : true
+   }
+}));
+
 app.use(passport.initialize());
 app.use(passport.session({
   secret: 'sudamedame'
