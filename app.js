@@ -37,9 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'sudamedame',
-  store: new RedisStore({
-    url: 'redis://redistogo:50fa60cf78a5f7cad8dd6c0a077e4a5c@grouper.redistogo.com:11746/'
-  }),
+  // store: new RedisStore({
+  //   url: 'redis://redistogo:50fa60cf78a5f7cad8dd6c0a077e4a5c@grouper.redistogo.com:11746/'
+  // }),
   resave: false
 }));
 
