@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 const session = require('express-session');
 const uuid = require('uuid');
 const MongoStore = require('connect-mongo')(session);
+const RedisStore = require('connect-redis')(session);
 
 var index = require('./routes/index');
 const tweet = require('./routes/tweet')
@@ -36,12 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'sudamedame',
-  store: new MongoStore({
-    host: 'ds019936.mlab.com',
-    port: '19936',
-    db: 'heroku_n1hffz96',
-    url: 'mongodb://heroku_n1hffz96:mi6if5qg41is169blarpsu30jh@ds019936.mlab.com:19936/heroku_n1hffz96'
-  })
+  store: new RedisStore({
+    url: 'redis://redistogo:50fa60cf78a5f7cad8dd6c0a077e4a5c@grouper.redistogo.com:11746/'
+  }),
+  resave: false
 }));
 
 app.use(passport.initialize());
