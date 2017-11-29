@@ -41,12 +41,8 @@ app.use(cookieSession({
 // }));
 app.use(passport.initialize());
 app.use(passport.session({
-  secret: 'sudamedame',
-  cookie: {
-    maxAge: 60 * 60 * 1000
-  }
-}
-));
+  secret: 'sudamedame'
+}));
 
 
 passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done) => {
