@@ -32,15 +32,29 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: 'sudamedame',
-  store: new MongoStore({
-    host: 'ds019936.mlab.com',
-    port: '19936',
-    db: 'heroku_n1hffz96',
-    url: 'mongodb://heroku_n1hffz96:mi6if5qg41is169blarpsu30jh@ds019936.mlab.com:19936/heroku_n1hffz96'
-  })
-}));
+// app.use(session({
+//   secret: 'sudamedame',
+//   store: new MongoStore({
+//     host: 'ds019936.mlab.com',
+//     port: '19936',
+//     db: 'heroku_n1hffz96',
+//     url: 'mongodb://heroku_n1hffz96:mi6if5qg41is169blarpsu30jh@ds019936.mlab.com:19936/heroku_n1hffz96'
+//   })
+// }));
+
+const env = process.env;
+
+app.configure('production', function() {
+  var RedisStore = require('connect-redis')(express);
+  var redisUri = url.parse(env.REDISTOGO_URL);
+  var store = new RedisStore({
+    host: redisUri.hostname,
+    port: redisUri.port,
+    pass: redisUri.auth.split(':')[1]
+  });
+  app.use(express.session({ secret: env.SESSION_SECRET, store: store }));
+  app.use(express.errorHandler());
+});
 
 app.use(passport.initialize());
 app.use(passport.session({
