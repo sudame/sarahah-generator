@@ -31,14 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: "hogehoge",
-  store: new MongoStore({
-    db: 'session',
-    host: 'localhost'
-  }),
-  cookie: {
-    httpOnly: false
-  }
+  secret: "hogehoge"
 }));
 app.use(passport.initialize());
 app.use(passport.session());
