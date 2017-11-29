@@ -31,10 +31,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: "sudamedame",
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({ db: mongoose.connection.db })
+  secret: "hogehoge",
+  store: new MongoStore({
+    db: 'session',
+    host: 'localhost'
+  }),
+  cookie: {
+    httpOnly: false
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
