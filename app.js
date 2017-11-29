@@ -33,7 +33,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'sudamedame'
+  secret: 'sudamedame',
+  store: new MongoStore({
+    url: 'mongodb://heroku_n1hffz96:mi6if5qg41is169blarpsu30jh@ds019936.mlab.com:19936/heroku_n1hffz96'
+  })
 }));
 
 app.use(passport.initialize());
