@@ -9,6 +9,7 @@ const session = require('express-session');
 const uuid = require('uuid');
 const MongoStore = require('connect-mongo')(session);
 const RedisStore = require('connect-redis')(session);
+const url = require('url');
 
 var index = require('./routes/index');
 const tweet = require('./routes/tweet')
