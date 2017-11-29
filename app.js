@@ -35,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'sudamedame',
   store: new MongoStore({
+    host: 'ds019936.mlab.com',
+    port: '19936',
+    db: 'heroku_n1hffz96',
     url: 'mongodb://heroku_n1hffz96:mi6if5qg41is169blarpsu30jh@ds019936.mlab.com:19936/heroku_n1hffz96'
   })
 }));
