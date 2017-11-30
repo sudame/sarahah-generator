@@ -61,18 +61,11 @@ passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done
 }));
 
 
-const users = {};
-passport.serializeUser(function (user, done) {
-  console.log(user.profile.id);
-  const id = uuid.v4();
-  users[id] = user
-  done(null, id);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
-
-passport.deserializeUser(function (id, done) {
-  const user = users[id];
-  if(!err) done(null, user);
-  else done(err, null);
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 });
 
 
