@@ -1,3 +1,5 @@
+import { isNull } from 'util';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -72,6 +74,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
   const user = users[id];
   console.log('DESERIALIZE ID = ' + id);
+  console.log('DESERIALIZE user is null ? : ' + isNull(user));
   done(null, user);
 });
 
