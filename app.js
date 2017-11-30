@@ -33,10 +33,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-let parsed_url  = url.parse(process.env.REDISTOGO_URL || 'http://localhost:6379');
-
 app.use(session({
-  secret: 'sudamedame',
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 30 * 60 * 1000
+  },
   store: new MongoStore({
     url: process.env.MONGODB_URI
   }),
