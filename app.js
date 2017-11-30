@@ -53,7 +53,6 @@ app.use(passport.session({
 
 
 passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done) => {
-  passport.session.id = profile.id;
   done(null, {
     token,
     tokenSecret,
@@ -62,11 +61,18 @@ passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done
 }));
 
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
+const users = {};
+passport.serializeUser(function (user, done) {
+  console.log(user.profile.id);
+  const id = uuid.v4();
+  users[id] = user
+  done(null, id);
 });
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+
+passport.deserializeUser(function (id, done) {
+  const user = users[id];
+  if(!user) done(null, user);
+  else done(null, false);
 });
 
 
