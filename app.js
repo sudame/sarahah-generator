@@ -73,7 +73,8 @@ passport.deserializeUser(function (id, done) {
   const user = users[id];
   console.log('DESERIALIZE ID = ' + id);
   console.log('DESERIALIZE user is null ? : ' + user);
-  done(null, user);
+  if(user) done(null, user);
+  else done(null, false);
 });
 
 
