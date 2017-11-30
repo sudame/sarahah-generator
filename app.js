@@ -16,9 +16,6 @@ const tweet = require('./routes/tweet')
 
 var app = express();
 
-app.set('port', (process.env.PORT || 3000));
-
-
 // passport
 const passport = require('passport');
 const TwitterStrategy = require('passport-twitter').Strategy;
@@ -40,10 +37,8 @@ let parsed_url  = url.parse(process.env.REDISTOGO_URL || 'http://localhost:6379'
 
 app.use(session({
   secret: 'sudamedame',
-  store: new RedisStore({
-    host: parsed_url.hostname,
-    port: parsed_url.port,
-    pass: (parsed_url.auth || '').split(':')[1]
+  store: new MongoStore({
+    url: process.env.MONGODB_URI
   }),
   resave: false
 }));
