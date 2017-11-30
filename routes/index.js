@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
   console.log('INDEX.JS REQ.USER = ' + req.user);
   if(req.user) console.log(Object.keys(req.user));
   if (req.user.id) {
-    res.render('index', {login: true, title: req.user.profile.id });
+    res.render('index', {login: true, title: req.user.id });
   } else {
     res.render('index', {login: false, title: 'Express' });
   }
