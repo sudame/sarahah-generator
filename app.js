@@ -64,7 +64,7 @@ passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done
 
 const users = {};
 passport.serializeUser(function (user, done) {
-  users[users.id] = user;
+  users[user.id] = user;
   done(null, user.id);
 });
 
