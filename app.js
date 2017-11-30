@@ -70,7 +70,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+  users.findById(id, function (err, user) {
     done(err, user);
   });
 });
