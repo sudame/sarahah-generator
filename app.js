@@ -39,12 +39,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 30 * 60 * 1000
+    maxAge: 60 * 60 * 31 * 1000
   },
   store: new MongoStore({
     url: process.env.MONGODB_URI
-  }),
-  resave: false
+  })
 }));
 
 app.use(passport.initialize());
