@@ -72,6 +72,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
   const user = users[id];
   if(!null) done(null, user);
+  else done(err, null);
 });
 
 
