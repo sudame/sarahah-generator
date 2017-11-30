@@ -53,6 +53,7 @@ app.use(passport.session({
 
 
 passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done) => {
+  passport.session.id = profile.id;
   done(null, {
     token,
     tokenSecret,
