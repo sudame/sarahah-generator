@@ -64,13 +64,14 @@ passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done
 
 const users = {};
 passport.serializeUser(function (user, done) {
+  console.log('SERIALIZE ID = ' + user.id);
   users[user.id] = user;
   done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
   const user = users[id];
-  console.log('ID = ' + id);
+  console.log('DESERIALIZE ID = ' + id);
   done(null, user);
 });
 
