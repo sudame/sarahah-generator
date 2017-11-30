@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
     console.log('REQ.USER.ID = ' + req.user.id);
   }
 
-  if (req.usr && req.user.id) {
+  if (req.user && req.user.id) {
     res.render('index', {login: true, title: req.user.id });
   } else {
     res.render('index', {login: false, title: 'Express' });
