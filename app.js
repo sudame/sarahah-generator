@@ -56,7 +56,7 @@ passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done
   passport.session.id = profile.id;
   profile.twitter_token = token;
   profile.twitter_tokenSecret = tokenSecret;
-  
+
   process.nextTick(() => {
     return done(null, profile);
   })
@@ -73,7 +73,7 @@ passport.deserializeUser(function (id, done) {
   const user = users[id];
   console.log('DESERIALIZE ID = ' + id);
   console.log('DESERIALIZE user is null ? : ' + user);
-  if(user) done(null, user);
+  if (user) done(null, user);
   else done(null, false);
 });
 
@@ -82,6 +82,11 @@ app.use('/', index);
 app.use('/tweet/', tweet);
 
 app.get('/auth/twitter', passport.authenticate('twitter'));
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+})
 
 app.get('/token', passport.authenticate('twitter', {
   failureRedirect: '/login',

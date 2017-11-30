@@ -4,6 +4,9 @@ block content
   if !login
     .header
       a#login(href="/auth/twitter/") ログイン
+  else
+    .header
+      a#login(href="/logout") ログアウト
 
   #intro
     h1 Sarahah<wbr>ジェネレーター
