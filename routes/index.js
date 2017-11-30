@@ -5,7 +5,11 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
   req.session.text = req.query.text;
   console.log('INDEX.JS REQ.USER = ' + req.user);
-  if(req.user) console.log(Object.keys(req.user));
+  if(req.user){
+    console.log('KEYS : ' + Object.keys(req.user));
+    console.log('REQ.USER.ID = ' + req.user.id);
+  }
+
   if (req.usr && req.user.id) {
     res.render('index', {login: true, title: req.user.id });
   } else {
