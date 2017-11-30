@@ -81,9 +81,9 @@ app.use('/tweet/', tweet);
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/token', passport.authenticate('twitter', {
-  failureRedirect: '/login',
-  successRedirect: '/'
+  failureRedirect: '/login'
 }), (req, res) => {
+  res.redirect('/?' + (req.session.text || ''));
   // console.log(req.user.token + ':' + req.user.tokenSecret);
   // res.render('index', { title: 'authenticated!' });
 });
