@@ -1,6 +1,4 @@
-document.getElementById('ta_t').addEventListener('keyup', () => {
-    document.getElementById('counter_t').innerHTML = document.getElementById('ta_t').value.length + '文字'; 
-})
+if(document.getElementById('ta_t')) document.getElementById('ta_t').addEventListener('keyup', () => { document.getElementById('counter_t').innerHTML = document.getElementById('ta_t').value.length + '文字'; });
 
 var arg = new Object;
 var pair = location.search.substring(1).split('&');
