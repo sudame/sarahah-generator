@@ -8,8 +8,8 @@ router.post('/', (req, res, next) => {
     const client = new Twitter({
         consumer_key: TwitterKeys.consumerKey,
         consumer_secret: TwitterKeys.consumerSecret,
-        access_token_key: req.user.token,
-        access_token_secret: req.user.tokenSecret
+        access_token_key: req.user.profile.twitter_token,
+        access_token_secret: req.user.profile.twitter_tokenSecret
     });
 
     const base64image = req.body.image.replace('data:image/png;base64,', '');

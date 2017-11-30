@@ -53,26 +53,24 @@ app.use(passport.session({
 
 
 passport.use(new TwitterStrategy(twitterKeys, (token, tokenSecret, profile, done) => {
-  done(null, {
-    token,
-    tokenSecret,
-    profile
-  });
+  passport.session.id = profile.id;
+  profile.twitter_token = token;
+  profile.twitter_tokenSecret = tokenSecret;
+  
+  process.nextTick(() => {
+    return done(null, profile);
+  })
 }));
-
 
 const users = {};
 passport.serializeUser(function (user, done) {
-  console.log(user.profile.id);
-  const id = uuid.v4();
-  users[id] = user
-  done(null, id);
+  users[users.id] = user;
+  done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
-  users.findById(id, function (err, user) {
-    done(err, user);
-  });
+  const user = users[id];
+  done(null, user);
 });
 
 
